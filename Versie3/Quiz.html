@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Mekongdelta</title>
+<title>KiesQuiz</title>
 
 <link rel="stylesheet" href="https://use.typekit.net/cvy2ojs.css">
 <link rel="icon" href="https://sweksparrow.github.io/Images/logoklein.png">
@@ -56,11 +56,61 @@ label {
       /* Control the height of the image */
   min-height: 380px;
 
-/* Center and scale the image nicely */
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-position: relative;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+#main {
+width: 60%;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: white;
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 250px;
+}
+
+label {
+width: 150px;
+display: inline-block;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #252525;
+  font-family: josefin-sans;
+}
+
+input[type=submit] {
+  width: 30%;
+  background-color: #9C1D1F;
+  color: #f5f4f4;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: josefin-sans;
+}
+
+input[type=submit]:hover {
+  background-color: #8b0e10;
+  color: #f5f4f4
 }
 </style>
 </head>
@@ -94,34 +144,83 @@ position: relative;
               </a>
             </li>
         </ul></div>
-        <div class="bkimg">
-            <form action="https://sweksparrow.github.io/Images/thankyou.mp4" method="post">
-              <label for="fname">Voornaam</label>
-              <input type="text" id="fname" name="firstname" placeholder="Peter">
-          
-              <label for="lname">Achternaam</label>
-              <input type="text" id="lname" name="lastname" placeholder="Parker">
-          
-              <label for="mail">E-mail adres</label>
-              <input type="text" id="mail" name="email" placeholder="webslinger1962@marvel.com">
-          
-          
-              <label for="country">Reispakket</label>
-              <select id="country" name="country">
-                <option value="Mekong">Mekongdelta reispakket</option>
-                <option value="Yangtze">Yangtze delta reispakket</option>
-                <option value="Maastricht">Doe mij maar de camping in Limburg</option>
-              </select>
-            
-              <input type="submit" value="Boek reis">
-            </form>
+        
+        <div style="margin-top: 50px; background-image: url(https://sweksparrow.github.io/Images/Mekong.jpg)">
+            <form  id="form1" style="padding: 25px">
+                <p class="tekstjes">Welke film kijk jij het liefste?</p><br>
+                <label><input type="radio" name="age" id="young" value="1" />Michiel de Ruyter</label>
+                <label><input type="radio" name="age" id="mid" value="2" />Rambo</label>
+                <label><input type="radio" name="age" id="old" value="3" />Skyfall</label>
+                <br><br><br><br>
+                <p class="tekstjes">Wat spreekt jou hiervan het meest aan?</p><br>
+                <label><input type="radio" name="activity" id="party" value="1" />Binnen zitten met een kopje thee</label>
+                <label><input type="radio" name="activity" id="rock" value="2" />Mysterieuze dorpjes bezoeken</label>
+                <label><input type="radio"  name="activity" id="beer" value="3" />Rondlopen in een drukke wereldstad</label>
+                <br><br><br><br>
+                <p class="tekstjes">Wat eet je het liefste uit de onderstaande opties?</p><br>
+                <label><input type="radio" name="genre" id="rock2" value="1" />Hutspot</label>
+                <label><input type="radio" name="genre" id="indie" value="2" />Loempia's</label>
+                <label><input type="radio" name="genre" id="country" value="3" />Pekingeend</label>
+                <br><br><br><br><br>
+                                <p class="tekstjes" style="margin-left: 15px" id="answer"></p>
+                <p class="tekstjes" style="margin-left: 15px" id="answer2"></p>
+                <input type="submit" value="Waar moet ik op vakantie?"></input>
+                
+                </form>
+                
+
+                </div>
+                <script>
+                       document.getElementById("form1").onsubmit=function() {
+                       
+                       
+                       age = parseInt(document.querySelector('input[name = "age"]:checked').value);  
+                      
+                      activity = parseInt(document.querySelector('input[name = "activity"]:checked').value);
+                       
+                      genre = parseInt(document.querySelector('input[name = "genre"]:checked').value);
+                       
+                       total= age + activity + genre;
+                       
+                      
+                       document.getElementById("answer").innerHTML = total;	   
+                
+                       if(total < 4) {
+                document.getElementById("answer2").innerHTML = "Je houdt zoveel van Nederland, je kan beter thuis blijven denk ik...";
+                }
+                
+                   if(total >=4 && total < 7) {
+                document.getElementById("answer2").innerHTML = "Je bent een zeer avontuurlijk persoon en kan genieten van dingen als krokodillenvissen. <br>De Mekongdelta is echt iets voor jou!";
+                }
+                    
+                    if(total >=7) {
+                document.getElementById("answer2").innerHTML = "Je houdt van verre reizen en andere culturen ontdekken om uit je comfortzone te komen. <br> Jij kan het beste naar de Yangtze delta gaan!";
+                }   
+                       
+                       return false; // required to not refresh the page; just leave this here
+                       }// end the submit function
+                </script>
+
+                   <div class="row" style="margin-top:100px">
+            <div class="column" style="width:33%">
+              <p class="titels">Contact</p> <br>
+               <p class="tekstjes"><span style="color:#9c1d1f"><strong>Telefoon:</strong></span><br>0612345678 <br><br> <span style="color:#9c1d1f"><strong>Adres:</strong></span> <br>Sesamstraat 123,<br>Almere</p>
+            </div>
+            <div class="column" style="width:33%">
+              <p class="titels">FAQ</p> <br>
+              <p class="tekstjes"> Hoe lang ben je onderweg? <br> Wat zijn de kosten? <br> Waarom maar twee reispakketten? <br> Hoe kan het zo goedkoop zijn? <br> Wat is Inzenity?</p>
+            </div>
+            <div class="column" style="width:33%">
+              <p class="titels">Partnerships</p> <br>
+              <p class="tekstjes">Wilt u partner worden van Inzenity? <br>Klik op <a href="Images/tenor.gif" style="color:#9c1d1f; text-decoration: none;">deze</a> link!</p>
+            </div>
+          </div>       
           </div>
 
-      </div>
+
     <div class="Banner1">
     </div>
     <div class="Banner2"></div>
-  </div>
 </div>
 </body>
 </html>
